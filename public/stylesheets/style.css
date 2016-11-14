@@ -1,6 +1,9 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 50px; }
+  @media (max-width: 1024px) {
+    body {
+      padding: 0; } }
 
 a {
   color: #00B7FF;
@@ -28,9 +31,10 @@ input.ng-invalid.ng-touched {
   text-align: center;
   width: 100%; }
 
-ul#related-items li {
-  float: left;
-  width: 25%;
-  height: 250px; }
+@media (max-width: 1024px) {
+  #related-items li {
+    float: none;
+    margin: 10px 0;
+    width: 100%; } }
 
 /*# sourceMappingURL=style.css.map */

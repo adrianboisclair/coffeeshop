@@ -30,9 +30,15 @@ import {Subscription} from "rxjs/Subscription";
         }
         ul {
             list-style: none;
+            padding: 0;
         }
         li {
+            box-shadow: 0px 1px 5px lightgray;
+            float: left;
+            height: 250px;
+            margin: 10px;
             text-align: center;
+            width: 45%;
         }
     `]
 })

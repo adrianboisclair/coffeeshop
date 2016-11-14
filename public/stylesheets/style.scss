@@ -1,6 +1,11 @@
+$med-screen: 1024px;
+$sm-screen: 768px;
 body {
-    padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    @media (max-width: $med-screen) {
+        padding: 0;
+    }
 }
 
 a {
@@ -36,10 +41,10 @@ input {
     text-align: center;
     width: 100%;
 }
-ul#related-items {
-    li {
-        float: left;
-        width: 25%;
-        height: 250px;
+@media (max-width: $med-screen) {
+    #related-items li {
+        float: none;
+        margin: 10px 0;
+        width: 100%;
     }
 }
