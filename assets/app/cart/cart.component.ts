@@ -43,38 +43,38 @@ import {Subscription} from "rxjs/Subscription";
     `]
 })
 export class CartComponent implements OnInit, OnDestroy {
-    @Input() cart: Cart;
+    @Input() cart:Cart;
 
-    private subscription: Subscription;
+    private subscription:Subscription;
 
-    shoppingCart: any = [];
-    itemSku : string;
-    cartQuantity : any;
-    relatedItems: any = [];
-    cartItemSku: string;
-    cartSku: any;
-    sub: any;
-    rel: any;
-    imageSrc: string = '../../images/coffee_pod_001.png';
+    shoppingCart:any = [];
+    itemSku:string;
+    cartQuantity:any;
+    relatedItems:any = [];
+    cartItemSku:string;
+    cartSku:any;
+    sub:any;
+    rel:any;
+    imageSrc:string = '../../images/coffee_pod_001.png';
 
-    constructor(private cartService: CartService, private route: ActivatedRoute) {}
+    constructor(private cartService:CartService, private route:ActivatedRoute) {
+    }
 
     ngOnInit() {
         this.getCart();
     }
 
     onEdit() {
-        console.log('onEdit');
         this.cartService.editCart(this.cart)
     }
+
     setCartItemSku(sku) {
-        console.log(sku);
         this.cartItemSku = sku;
     }
+
     getCart() {
         this.sub = this.route.params.subscribe(params => {
             this.cartSku = params['sku']; // (+) converts string 'id' to a number
-            console.log(this.cartSku);
             let sku = this.cartSku;
             this.cartService.getCart(sku)
                 .subscribe(
@@ -89,15 +89,13 @@ export class CartComponent implements OnInit, OnDestroy {
                 );
         });
     }
+
     getRelated() {
-        console.log('getRelated', this.cartSku);
         this.sub = this.route.params.subscribe(params => {
-            //console.log(this.cartSku);
             let sku = this.cartSku;
             this.cartService.getRelated(sku)
                 .subscribe(
                     result => {
-                        console.log(result);
                         return this.relatedItems = result;
                     }
                 );
@@ -107,7 +105,10 @@ export class CartComponent implements OnInit, OnDestroy {
     onDelete() {
         this.cartService.deleteCart(this.cart)
             .subscribe(
-                result => { this.shoppingCart = result; return this.shoppingCart; }
+                result => {
+                    this.shoppingCart = result;
+                    return this.shoppingCart;
+                }
             );
     }
 

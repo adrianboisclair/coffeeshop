@@ -341,7 +341,6 @@ var machines = [
 
 function getMachine(sku) {
     var theItems = machines;
-    console.log(sku);
     for (var i = 0; i < theItems.length; i++) {
         if (theItems[i].sku === sku) {
             return theItems[i];
@@ -386,7 +385,6 @@ router.get('/related/:sku', function (req, res, next) {
 
     function getShoppingCart(sku) {
         for(var i = 0; i < machines.length; i++) {
-                console.log(sku);
             if(machines[i].sku === sku) {
                 return machines[i];
             }
@@ -431,7 +429,6 @@ router.get('/related/:sku', function (req, res, next) {
                     error: err
                 });
             }
-            console.log(getRelatedProducts(sku));
             res.status(200).json({
                 cart: 'Success',
                 obj: getRelatedProducts(sku)
