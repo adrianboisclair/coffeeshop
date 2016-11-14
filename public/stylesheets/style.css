@@ -28,4 +28,9 @@ input.ng-invalid.ng-touched {
   text-align: center;
   width: 100%; }
 
+ul#related-items li {
+  float: left;
+  width: 25%;
+  height: 250px; }
+
 /*# sourceMappingURL=style.css.map */

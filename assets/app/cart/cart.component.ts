@@ -24,7 +24,15 @@ import {Subscription} from "rxjs/Subscription";
         }
         img {
             height: auto;
-            width: 44px;
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+        ul {
+            list-style: none;
+        }
+        li {
+            text-align: center;
         }
     `]
 })

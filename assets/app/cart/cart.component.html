@@ -4,22 +4,17 @@
         Shopping Cart - Items in Cart: {{ cartQuantity }} | {{ cartSku }} {{ shoppingCart.nice_name }} ( {{ shoppingCart.model }} )
     </div>
     <div class="panel-body">
-
-        <div class="input-group" style="display: none;">
-            <label for="cartitem">
-                <input type="text" [(ngModel)]="itemSku" id="cartitem">
-            </label>
-        </div>
-
         <h3>Before you go, check out these fine products!</h3>
         <ul id="related-items">
             <li *ngFor="let item of shoppingCart.related_products">
                 <img src="{{imageSrc}}" />
-                {{ item.sku }} | {{ item.nice_name }} | {{ item.pack_size[0] }}-dozen {{ item.product_type }} | {{ item.coffee_flavor }}
+                {{ item.sku }} <br>
+                {{ item.nice_name }} <br>
+                {{ item.pack_size[0] }}-dozen {{ item.product_type }} <br>
+                {{ item.coffee_flavor }}
             </li>
         </ul>
     </div>
-    <input type="text" [(ngModel)]="shoppingCart.sku" >
     <footer class="panel-footer">
         <div class="author">
 
