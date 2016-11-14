@@ -380,27 +380,14 @@ router.get('/:sku', function (req, res, next) {
         });
 });
 
-router.get('related/:sku', function (req, res, next) {
-    var related = req.params.related;
-    Cart.find()
-        .exec(function (err, carts) {
-            if (err) {
-                return res.status(500).json({
-                    title: 'An error occurred',
-                    error: err
-                });
+router.get('/related/:sku', function (req, res, next) {
+    function getShoppingCart(sku) {
+        for(var i = 0; i < machines.length; i++) {
+            if(machines[i].sku === sku) {
+                return machines[i];
             }
-            res.status(200).json({
-                cart: 'Success',
-                obj: getMachine(related)
-            });
-        });
-});
-
-router.get('/related', function (req, res, next) {
-
-    function getShoppingCart() {
-        return [machines[0]];
+        }
+        return false;
     }
 
     function shuffle(array) {
@@ -418,37 +405,35 @@ router.get('/related', function (req, res, next) {
         return array;
     }
 
-    function getRelatedProducts(product) {
-        var shoppingCart = getShoppingCart();
-        var productSku = product.sku;
+    function getRelatedProducts() {
+        var sku = req.params.sku;
+        var shoppingCart = getShoppingCart(sku);
         var mach = machines;
 
-        if (productSku) {
+        if (shoppingCart) {
             for (var i = 0; i < mach.length; i++) {
-                if (productSku === mach[i].sku) {
-                    return shuffle(shoppingCart[0].related_products).slice(0, 3);
+                if (shoppingCart.sku === mach[i].sku) {
+                    return shuffle(shoppingCart.related_products.slice(6));
                 }
             }
-        }
-        if (shoppingCart) {
-            return shuffle(shoppingCart[0].related_products).slice(0, 3);
         }
         return false;
     }
 
     Cart.find()
-        .exec(function (err, related) {
+        .exec(function (err, carts) {
             if (err) {
                 return res.status(500).json({
                     title: 'An error occurred',
-                    obj: err
+                    error: err
                 });
             }
+            console.log(getRelatedProducts());
             res.status(200).json({
-                message: 'Related Items',
-                obj: getRelatedProducts(req.query)
+                cart: 'Success',
+                obj: getRelatedProducts()
             });
-        })
+        });
 });
 
 router.post('/', function (req, res, next) {
