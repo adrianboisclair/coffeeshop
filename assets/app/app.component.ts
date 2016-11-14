@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CartService } from "./cart/cart.service";
 
 @Component({
-    selector: 'my-app',
+    selector: 'coffee-app',
     templateUrl: './app.component.html',
     providers: [CartService]
 })
