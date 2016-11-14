@@ -298,7 +298,7 @@ var machines = [
     },
     {
         sku: "CM103",
-        nice_name: "Large Coffe Machine",
+        nice_name: "Large Coffee Machine",
         product_type: "COFFEE_MACHINE_LARGE",
         water_line_compatible: true,
         coffee_flavor: null,
@@ -341,6 +341,7 @@ var machines = [
 
 function getMachine(sku) {
     var theItems = machines;
+    console.log(sku);
     for (var i = 0; i < theItems.length; i++) {
         if (theItems[i].sku === sku) {
             return theItems[i];
@@ -381,8 +382,11 @@ router.get('/:sku', function (req, res, next) {
 });
 
 router.get('/related/:sku', function (req, res, next) {
+    var sku = req.params.sku;
+
     function getShoppingCart(sku) {
         for(var i = 0; i < machines.length; i++) {
+                console.log(sku);
             if(machines[i].sku === sku) {
                 return machines[i];
             }
@@ -406,14 +410,13 @@ router.get('/related/:sku', function (req, res, next) {
     }
 
     function getRelatedProducts() {
-        var sku = req.params.sku;
         var shoppingCart = getShoppingCart(sku);
         var mach = machines;
 
         if (shoppingCart) {
             for (var i = 0; i < mach.length; i++) {
                 if (shoppingCart.sku === mach[i].sku) {
-                    return shuffle(shoppingCart.related_products.slice(6));
+                    return shuffle(shoppingCart.related_products.slice(0,4));
                 }
             }
         }
@@ -428,10 +431,10 @@ router.get('/related/:sku', function (req, res, next) {
                     error: err
                 });
             }
-            console.log(getRelatedProducts());
+            console.log(getRelatedProducts(sku));
             res.status(200).json({
                 cart: 'Success',
-                obj: getRelatedProducts()
+                obj: getRelatedProducts(sku)
             });
         });
 });

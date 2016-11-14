@@ -19,7 +19,7 @@ import { Component } from "@angular/core";
                 <li routerLinkActive="active"><a [routerLink]="['/shoppingcart/CM101']">Large Coffee Machine</a></li>
                 <li routerLinkActive="active"><a [routerLink]="['/shoppingcart/CM102']">Large Coffee Machine</a></li>
                 <li routerLinkActive="active"><a [routerLink]="['/shoppingcart/CM103']">Large Coffee Machine</a></li>
-                <li routerLinkActive="active"><a [routerLink]="['/shoppingcart/EM001']">Expresso Machine</a></li>
+                <li routerLinkActive="active"><a [routerLink]="['/shoppingcart/EM001']">Espresso Machine</a></li>
                 <li routerLinkActive="active"><a [routerLink]="['/shoppingcart/EM002']">Espresso Machine</a></li>
                 <li routerLinkActive="active"><a [routerLink]="['/shoppingcart/EM003']">Espresso Machine</a></li>
             </ul>

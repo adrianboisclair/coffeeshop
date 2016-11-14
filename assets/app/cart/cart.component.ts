@@ -92,12 +92,12 @@ export class CartComponent implements OnInit, OnDestroy {
     getRelated() {
         console.log('getRelated', this.cartSku);
         this.sub = this.route.params.subscribe(params => {
-            this.cartSku = params['sku']; // (+) converts string 'id' to a number
-            console.log(this.cartSku);
+            //console.log(this.cartSku);
             let sku = this.cartSku;
-            this.cartService.getRelated(this.cartSku)
+            this.cartService.getRelated(sku)
                 .subscribe(
                     result => {
+                        console.log(result);
                         return this.relatedItems = result;
                     }
                 );
