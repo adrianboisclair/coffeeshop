@@ -6,7 +6,7 @@
     <div class="panel-body">
         <h3>Before you go, check out these fine products!</h3>
         <ul id="related-items">
-            <li *ngFor="let item of shoppingCart.related_products">
+            <li *ngFor="let item of relatedItems">
                 <img src="{{imageSrc}}" />
                 {{ item.sku }} <br>
                 {{ item.nice_name }} <br>
@@ -20,11 +20,7 @@
 
         </div>
         <div class="config">
-            <a (click)="getCart()">Get Cart</a>
-            <a (click)="setCartItemSku('CM001')">Set Cart Item</a>
-            <a (click)="getRelated('CM001')">Get Related</a>
-            <a (click)="onEdit()">Edit</a>
-            <a (click)="onDelete()">Delete</a>
+            <a (click)="getRelated()">Get Related Items (refreshes items from server)</a>
         </div>
     </footer>
 </article>

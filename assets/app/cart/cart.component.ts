@@ -50,11 +50,11 @@ export class CartComponent implements OnInit, OnDestroy {
     shoppingCart: any = [];
     itemSku : string;
     cartQuantity : any;
-    name : string;
     relatedItems: any = [];
     cartItemSku: string;
     cartSku: any;
     sub: any;
+    rel: any;
     imageSrc: string = '../../images/coffee_pod_001.png';
 
     constructor(private cartService: CartService, private route: ActivatedRoute) {}
@@ -81,23 +81,27 @@ export class CartComponent implements OnInit, OnDestroy {
                     result => {
                         this.shoppingCart = result;
                         this.itemSku = result.sku;
-                        this.name = result;
                         this.cartQuantity = 1;
-                        this.shoppingCart = result
+                        this.shoppingCart = result;
+                        this.getRelated();
                         return result;
                     }
                 );
         });
     }
-    getRelated(sku) {
-        this.cartService.getRelated(sku)
-            .subscribe(
-                result => {
-                    this.relatedItems = result;
-                    console.log(this.relatedItems[0]);
-                    return this.relatedItems;
-                }
-            );
+    getRelated() {
+        console.log('getRelated', this.cartSku);
+        this.sub = this.route.params.subscribe(params => {
+            this.cartSku = params['sku']; // (+) converts string 'id' to a number
+            console.log(this.cartSku);
+            let sku = this.cartSku;
+            this.cartService.getRelated(this.cartSku)
+                .subscribe(
+                    result => {
+                        return this.relatedItems = result;
+                    }
+                );
+        });
     }
 
     onDelete() {
