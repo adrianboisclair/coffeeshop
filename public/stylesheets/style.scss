@@ -41,6 +41,9 @@ input {
     text-align: center;
     width: 100%;
 }
+footer.panel-footer .config {
+    width: 100%;
+}
 @media (max-width: $med-screen) {
     #related-items li {
         float: none;
