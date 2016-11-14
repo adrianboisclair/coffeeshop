@@ -39,18 +39,16 @@ export class CartService {
     }
 
     getRelated(sku: string) {
-        return this.http.get('http://localhost:3000/related/')
+        return this.http.get('http://localhost:3000/cart/related/'+sku)
             .map((response: Response) => {
-                const items = response.json().obj;
-                this.related = items;
-                console.log(items);
-                return items;
+                const item = response.json().obj;
+                this.related = item;
+                return item;
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     editCart(cart: Cart) {
-        console.log('editCart');
         this.cartIsEdit.emit(cart);
     }
 
