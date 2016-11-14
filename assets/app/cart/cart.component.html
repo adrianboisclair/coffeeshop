@@ -1,0 +1,35 @@
+<article class="panel panel-default">
+    <div class="panel-header">
+
+        Shopping Cart - Items in Cart: {{ cartQuantity }} | {{ cartSku }} {{ shoppingCart.nice_name }} ( {{ shoppingCart.model }} )
+    </div>
+    <div class="panel-body">
+
+        <div class="input-group" style="display: none;">
+            <label for="cartitem">
+                <input type="text" [(ngModel)]="itemSku" id="cartitem">
+            </label>
+        </div>
+
+        <h3>Before you go, check out these fine products!</h3>
+        <ul id="related-items">
+            <li *ngFor="let item of shoppingCart.related_products">
+                <img src="{{imageSrc}}" />
+                {{ item.sku }} | {{ item.nice_name }} | {{ item.pack_size[0] }}-dozen {{ item.product_type }} | {{ item.coffee_flavor }}
+            </li>
+        </ul>
+    </div>
+    <input type="text" [(ngModel)]="shoppingCart.sku" >
+    <footer class="panel-footer">
+        <div class="author">
+
+        </div>
+        <div class="config">
+            <a (click)="getCart()">Get Cart</a>
+            <a (click)="setCartItemSku('CM001')">Set Cart Item</a>
+            <a (click)="getRelated('CM001')">Get Related</a>
+            <a (click)="onEdit()">Edit</a>
+            <a (click)="onDelete()">Delete</a>
+        </div>
+    </footer>
+</article>

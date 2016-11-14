@@ -1,0 +1,17 @@
+<div class="col-md-8 col-md-offset-2">
+    test
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+            <label for="sku">sku</label>
+            <input
+                    type="text"
+                    id="sku"
+                    class="form-control"
+                    [ngModel]="cart?.sku"
+                    name="sku"
+                    required>
+        </div>
+        <button type="button" class="btn btn-danger" (click)="onClear(f)">Clear</button>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+</div>
