@@ -405,9 +405,7 @@ router.get('/related', function (req, res, next) {
 
     function shuffle(array) {
         var counter = array.length;
-
         while (counter > 0) {
-
             var index = Math.floor(Math.random() * counter);
 
             counter--;
@@ -416,9 +414,7 @@ router.get('/related', function (req, res, next) {
 
             array[counter] = array[index];
             array[index] = temp;
-
         }
-
         return array;
     }
 
